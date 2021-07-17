@@ -5,8 +5,6 @@ interface IProps {
     id: number;
 }
 
-// let id = 0;
-
 const Item = (props: IProps) => {
 
     const [count, setCount] = useState(0);
@@ -14,7 +12,7 @@ const Item = (props: IProps) => {
     useEffect(() => {
         console.log('组件',props.id, '首次渲染');
     }, []);
-    
+
     const {name} = props; 
     return (
         <>
@@ -22,32 +20,9 @@ const Item = (props: IProps) => {
             <div>组件{props.id}的state: {count}</div>
             <div onClick={() => setCount(count + 1)}>click to add comp's state count</div>
             {"----------------------"}
-            {/* <input type="text" /> */}
         </>
     )
 }
-
-// const App = () => {
-//     const [list, setlist] = useState([
-//         {
-//             name: '1',
-//             id: '0'
-//         },
-//         {
-//             name: '2',
-//             id: '1'
-//         }
-//     ]);
-
-//     return (
-//         <>
-//             <div onClick={() => setlist(list => [{name: '3', id: '3'}, list[0], list[1]])}>click me to add item</div>
-//             {list.map((item, index) => (
-//                 <Item key={id++} name={item.name} id={item.id} />
-//             ))}
-//         </>
-//     )
-// }
 
 const App = () => {
     const [list, setlist] = useState([
@@ -63,7 +38,11 @@ const App = () => {
 
     return (
         <>
-            <div onClick={() => setlist(list => [{name: '组件2', id: 2}, list[0], list[1]])}>click me to add item</div>
+            <div
+                onClick={() => setlist(list => [{name: '组件2', id: 2}, list[0], list[1]])}
+            >
+                点我往数组头部插入一项
+            </div>
             {list.map((item, index) => (
                 <Item key={index} name={item.name} id={item.id} />
             ))}

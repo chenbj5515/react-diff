@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {One} from './examples';
-// import App from './App';
+import {Zero, One, Two, Three} from './examples';
 
 ReactDOM.render(
-    <One />,
+    <Two />,
     document.getElementById('root')
 );

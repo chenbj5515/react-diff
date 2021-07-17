@@ -5,22 +5,24 @@ interface IProps {
     id: number;
 }
 
-let id = 0;
-
 const Item = (props: IProps) => {
 
-    const [count, setCount] = useState(0);
+    const [list, setList] = useState({content: ''});
 
     useEffect(() => {
-        console.log('组件',props.id, '首次渲染');
+        setTimeout(() => {
+            setList({
+                content: '服务端取到的内容'
+            });
+        }, 1000);
     }, []);
 
     const {name} = props; 
     return (
         <>
             <div>{name}</div>
-            <div>组件{props.id}的state: {count}</div>
-            <div onClick={() => setCount(count + 1)}>click to add comp's state count</div>
+            <div>组件{props.id}的state: {list.content}</div>
+            {/* <div onClick={() => setCount(count + 1)}>click to add comp's state count</div> */}
             {"----------------------"}
         </>
     )
@@ -46,7 +48,7 @@ const App = () => {
                 点我往数组头部插入一项
             </div>
             {list.map((item, index) => (
-                <Item key={id++} name={item.name} id={item.id} />
+                <Item key={item.id} name={item.name} id={item.id} />
             ))}
         </>
     )
